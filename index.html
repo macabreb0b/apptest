@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title></title>
+  </head>
+  <body>
+    <script src='js/Chart.min.js'></script>
+    <script src='js/jquery-2.1.1.min.js'></script>
+    <script>
+      var config = {
+          clientId: '448803S2D22M4',
+          domain: 'https://clover.com/'
+      };
+
+      function getAccessToken() {
+        userInfo = {};
+        params = window.location.hash.split('&');
+        var i = 0;
+        while (param = params[i++]) {
+          param = param.split("=");
+          userInfo[param[0]] = param[1];
+        }
+      }
+
+      function redirect() {
+          var redirect = window.location.href.replace(window.location.hash, '');
+          var url = config.domain +
+                'oauth/authorize?response_type=token&client_id=' +
+                config.clientId +
+                '&redirect_uri=' + encodeURIComponent(redirect);
+          window.location.href = url;
+      }
+      
+      function getTableData() {
+          return $.get(config.domain + 'v2/merchant/' + merchantId + '/tables?access_token=' + accessToken);
+      }
+    </script>
+      
+    <script>
+      var token = 'e268dc70-bb34-29e3-7661-65b176410d4d';
+      var ordersUrl = 'https://www.clover.com/v3/merchants/6M61MW5T297QP/orders'
+      var itemsUrl = 'https://www.clover.com/v3/merchants/6M61MW5T297QP/orders'
+        
+        
+      // on load redirect to oauth site 
+        
+        
+        // $.ajax({
+        //   url: 'https://www.clover.com/v3/merchants/6M61MW5T297QP/orders',
+        //   beforeSend: function (request) {
+        //         request.setRequestHeader("Authorization", token);
+        //   },
+        //   method: 'get',
+        //   success: function (response) {
+        //     debugger
+        //   },
+        //   error: function () {
+        //     debugger
+        //   }
+        // })
+        if (!location.hash) {
+          // redirect();
+        } else {
+            // getTokens();
+            
+            var data = getTableData();
+           
+        }
+    </script>
+  </body>
+</html>
+
+<!-- merchant ID= 6M61MW5T297QP -->
+<!-- API token = e268dc70-bb34-29e3-7661-65b176410d4d -->
